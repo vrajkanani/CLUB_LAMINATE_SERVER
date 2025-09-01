@@ -1,26 +1,10 @@
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const cors = require("cors"); // Import the cors middleware
-
-// const app = express();
-// app.use(express.json());
-// app.use(cors()); // Use cors middleware to allow all origins. Adjust options as needed.
-
-// const Conform = require("./conform.js");
-// const UserModel = require("./user.js");
-// const LoginModel = require("./login.js");
-// const ContactModel = require("./contactus.js");
-
-// // mongoose.connect("mongodb://localhost:27017/admin_database");
-// mongoose.connect("mongodb+srv://kananivraj733:0q2EFvwXPc02GV0Q@cluster0.s9u9j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
-
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors"); // Import the cors middleware
+const cors = require("cors");
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // Use cors middleware to allow all origins. Adjust options as needed.
+app.use(cors());
 
 const Conform = require("./conform.js");
 const UserModel = require("./user.js");
@@ -222,13 +206,6 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/forgot", async (req, res) => {
-  // const LoginSchema = new LoginModel({
-  //     userName: req.body.userName,
-  //     password: req.body.password
-  // });
-
-  // await LoginSchema.save();
-  // res.send(LoginSchema);
   if (req.body.userName && req.body.password) {
     let admin = await LoginModel.findOne(req.body);
     if (admin) {
@@ -239,10 +216,9 @@ app.post("/forgot", async (req, res) => {
   }
 });
 
-// app.delete("/")
-
 //--------------end login------------------------
 
 app.listen(3030, () => {
   console.log("server is running at 3030...");
 });
+
